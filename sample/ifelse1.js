@@ -1,23 +1,26 @@
-const readline = require('readline');
+// Generate 5 random 3-digit values
+let values = [];
+for (let i = 0; i < 5; i++) {
+  values.push(Math.floor(Math.random() * 900) + 100);
+}
 
-// Create an interface for reading input from the user
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-// Ask the user to enter a year
-rl.question('Enter a year:', (year) => {
-  // Convert the year to a number
-  year = Number(year);
-
-  // Check if it is a leap year or not
-  if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
-    console.log(year + " is a leap year");
-  } else {
-    console.log(year + " is not a leap year");
+// Find the minimum and maximum values
+let minValue = values[0];
+let maxValue = values[0];
+for (let i = 1; i < values.length; i++) {
+  if (values[i] < minValue) {
+    minValue = values[i];
   }
+  if (values[i] > maxValue) {
+    maxValue = values[i];
+  }
+}
 
-  // Close the interface
-  rl.close();
-});
+// Output the results
+console.log("The 5 random values are: " + values.join(", "));
+console.log("The minimum value is: " + minValue);
+console.log("The maximum value is: " + maxValue);
+
+
+// Write a program that reads 5 Random 3 Digit values and then outputs the minimum
+// and the maximum value

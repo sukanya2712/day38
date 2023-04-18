@@ -1,42 +1,41 @@
-const readline = require('readline').createInterface({
+
+  
+  const readline = require('readline').createInterface({
     input: process.stdin,
     output: process.stdout
   });
   
-  readline.question('Enter a number: ', num => {
-    if (isPrime(num)) {
-      const palindrome = getPalindrome(num);
-      if (isPrime(palindrome)) {
-        console.log(`${num} is a prime number and its palindrome ${palindrome} is also prime`);
-      } else {
-        console.log(`${num} is a prime number but its palindrome ${palindrome} is not prime`);
-      }
-    } else {
-      console.log(`${num} is not a prime number`);
-    }
-    readline.close();
+  readline.question('Enter the num1: ', num1 => {
+    readline.question('Enter the num2: ', num2 => {
+      
+  
+      isPalindrome(num1,num2);
+  
+      
+  
+      readline.close();
+    });
   });
+
+  function isPalindrome(num1, num2) {
+    let str1 = num1.toString();
+    let str2 = num2.toString();
   
-  function isPrime(num) {
-    if (num <= 1) {
-      return false;
+    if (str1.length !== str2.length) {
+        isPalindrome = false;
     }
-    for (let i = 2; i <= Math.sqrt(num); i++) {
-      if (num % i === 0) {
-        return false;
+  
+    for (let i = 0; i < str1.length; i++) {
+      if (str1[i] !== str2[str2.length - i - 1]) {
+        isPalindrome = false;
+        break;
       }
     }
-    return true;
-  }
   
-  function getPalindrome(num) {
-    let reversed = 0;
-    let original = num;
-    while (original > 0) {
-      const digit = original % 10;
-      reversed = reversed * 10 + digit;
-      original = Math.floor(original / 10);
-    }
-    return reversed;
+    if (isPalindrome) {
+        console.log("Palindrome");
+      } else {
+        console.log("Not Palindrome");
+      }
   }
   
